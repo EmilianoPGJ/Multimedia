@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MangoDB Atlas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 20px;
+      background: #f0f4f8;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: #4CAF50;
+    }
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+    .control-group {
+      flex: 1;
+      min-width: 180px;
+    }
+    label {
+      font-size: 14px;
+      color: #555;
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      background: white;
+      cursor: pointer;
+    }
+    select:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+    input[type="range"] {
+      width: 100%;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+    .range-value {
+      display: inline-block;
+      background: #4CAF50;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+    }
+    button {
+      flex: 1;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    #btn-speak {
+      background: #4CAF50;
+      color: white;
+      box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    }
+    #btn-listen {
+      background: #2196F3;
+      color: white;
+      box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+    }
+    #btn-stop {
+      background: #f44336;
+      color: white;
+      box-shadow: 0 4px 10px rgba(244, 67, 54, 0.3);
+    }
+    button:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+    button:active {
+      transform: translateY(0);
+    }
+    #output-area {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 50px;
+      color: #444;
+      min-height: 20px;
+      border: 2px solid #e0e0e0;
+      text-align: center;
+      font-size: 15px;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: normal;
+      margin-left: 10px;
+    }
+    .status-idle {
+      background: #e0e0e0;
+      color: #666;
+    }
+    .footer-note {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🔊 MangoDB Atlas</h2>
+  <div class="subtitle">Reconocimiento de voz y texto a voz con acento mexicano</div>
+
+  <textarea id="input-area" placeholder="Escribe aquí el texto o usa el botón Escuchar para dictar..."></textarea>
+
+  <div class="controls">
+    <div class="control-group">
+      <label><span class="status-badge status-idle" id="voice-status"></span></label>
+      <label id="voice-select"></label>
+    </div>
+    <div class="control-group">
+      <label> <span id="rate-val" class="range-value"></span></label>
+      <input type="hidden" id="rate" value="1" >
+    </div>
+        <div class="control-group">
+      <label><span id="pitch-val" class="range-value"></span></label>
+      <input type="hidden" id="pitch" value="1">
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button id="btn-speak" onclick="speak()">🔊 Reproducir</button>
+    <button id="btn-listen" onclick="listen()">🎤 Escuchar</button>
+    
+  </div>
+
+  <div id="output-area">⏸️ Presiona un botón para comenzar</div>
+  
+  <div class="footer-note">
+    Di "hora", "hola", "clima", "profesor" o "peak" después de presionar Escuchar
+  </div>
+
+  <script src="script2.js"></script>
+
+</body>
+</html> 
